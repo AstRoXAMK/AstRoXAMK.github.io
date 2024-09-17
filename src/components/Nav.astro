@@ -1,0 +1,67 @@
+---
+import MobileNav from "./MobileNav.astro"
+---
+
+
+<div id="navbar" class="w-full z-50 fixed p-0 box-border top-0 left-0 h-18 bg-slate-900">
+    <div id="logo" class="flex items-center px-5 ">
+        <a href="/" id="home-btn">
+            <p class="text-3xl font-bold">
+                RA
+            </p>
+        </a>
+    </div>
+    <nav id="Menu-Items" class="lg:flex lg:items-center lg:justify-center py-5">
+        <ul class="flex flex-row gap-12 justify-center text-3xl">
+            <li class="transform hover:scale-110 transition-transform duration-150 ease-in-out">
+                <a href="/about">About Me</a>
+            </li>
+            <li class="transform hover:scale-110 transition-transform duration-150 ease-in-out">
+                <a href="/projects">Projects</a>
+            </li>
+            <li class="transform hover:scale-110 transition-transform duration-150 ease-in-out">
+                <a href="/articles">Texts</a>
+            </li>
+            <li class="transform hover:scale-110 transition-transform duration-150 ease-in-out">
+                <a href="/contactInfo">Contact</a>
+            </li>
+        </ul>
+    </nav>
+    <div >
+        <MobileNav />
+    </div>
+</div>
+
+<style>
+    #navbar{
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    }
+
+    @media (max-width: 719px){
+        #Menu-Items{
+            display: block;
+            grid-template-columns: 1fr 1fr;
+            height: 75px;
+        }
+
+        #Menu-Items a{
+            display: none;
+        }
+
+        #logo{
+            font-size: 1.2rem;
+            padding: 1.25rem;
+        }
+    }
+
+    @media (min-width: 1921px){
+        #logo{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-right: 2rem;
+        }
+    }
+</style>

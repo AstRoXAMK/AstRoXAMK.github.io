@@ -1,0 +1,49 @@
+---
+import CVDownload from "./CV_Download.astro";
+---
+
+<aside class="py-10 mb-6">
+    <div id="Connect" class="flex lg:flex-row justify-center lg:gap-12 gap-6">
+        <div id="mailto" 
+        class="lg:text-2xl text-base border rounded-r-lg rounded-l-lg lg:p-3 p-2 border-none bg-gradient-to-l from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600">
+            <a href="mailto:roope.astren@gmail.com">
+                <h2>
+                    Contact me through my E-mail here
+                </h2>
+            </a>
+        </div>
+        <CVDownload />
+    </div>
+</aside>
+
+<style>
+    aside{
+        border-top: 0.1rem solid gray;
+		border-bottom: 0.1rem solid gray;
+    }
+
+    @media (max-width: 719px){
+        #Connect{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            padding: 0 2.5rem;
+            margin: 0 auto;
+        }
+        #Connect > div{
+            background: linear-gradient(90deg, var(--accent-purple-1), var(--accent-cyan-1));
+        }
+        #Connect > div:hover{
+            background: linear-gradient(90deg, var(--accent-purple-2), var(--accent-cyan-2));
+        }
+    }
+
+    @media (min-width: 1921px){
+        aside{
+            padding: 3vh 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+</style>

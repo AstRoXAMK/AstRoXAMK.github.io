@@ -1,0 +1,39 @@
+---
+
+---
+
+<footer class="flex flex-col lg:flex-row-reverse text-center mt-auto mb-8 justify-center lg:gap-12">
+    <div id="icons" class="lg:pt-2 lg:text-xl text-sm">
+        <div class="flex flex-row gap-3 justify-center lg:gap-6">
+            <a href="https://github.com/AstRooFin" target="_blank">
+                <p>Github</p>
+            </a>
+            <a href="https://www.linkedin.com/in/roope-astr%C3%A9n-7053bb249/" target="_blank">
+                <p>LinkedIn</p>
+            </a>
+            <a href="https://www.instagram.com/rhj.astren/" target="_blank">
+                <p>Instagram</p>
+            </a>
+        </div>
+        <p class="lg:hidden py-1">
+            ======================
+        </p>
+    </div>
+    <div id="design" class="lg:text-xl text-sm">
+        <p >
+            Designed @ Kotka
+        </p>
+        <p class="lg:hidden">
+            ----------
+        </p>
+        <p>
+            &copy; <span id="copyright"></span>
+        </p>
+    </div>
+</footer>
+
+<script>
+    document.querySelector("#copyright").textContent = new Date()
+    .getFullYear()
+    .toString();
+</script>

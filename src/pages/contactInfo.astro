@@ -1,0 +1,98 @@
+---
+import BaseLayout from "../Layouts/BaseLayout.astro"
+const name = "Roope Astrén";
+---
+
+<BaseLayout> 
+    <h1 class="font-bold">Contact <span>{name}</span></h1>
+    <div class="flex justify-center text-center text-2xl">
+        <ul>
+            <li>
+                <p id="title">
+                    Location:
+                </p>
+                <p id="content">
+                    Kotka, Finland
+                </p>
+            </li>
+            <li>
+                <p id="title">
+                    Education:
+                </p>
+                <p id="content">
+                    XAMK University of Applied Sciences
+                </p>
+            </li>
+            <li>
+                <p id="title">
+                    E-Mail:
+                </p>
+                <p id="content">
+                    roope.astren@gmail.com
+                </p>
+            </li>
+            <li>
+                <p id="title">
+                    Mobile Phone:
+                </p>
+                <p id="content">
+                    (+358) 0404848971
+                </p>
+            </li>
+            <li>
+                <p id="title">
+                    Languages:
+                </p>
+                <p id="content">
+                    Finnish, English, Swedish, Spanish
+                </p>
+            </li>
+        </ul>
+    </div>
+</BaseLayout>
+
+<style>
+    h1{
+        text-align: center;
+        font-size: 3rem;
+        margin-top: 1.5rem;
+    }
+
+    span{
+        color: var(--accent-cyan-3);
+    }
+
+    li{
+        margin: 1.2rem 0;
+    }
+
+    li #title{
+        font-weight: bold;
+        font-size: 1.7rem;
+        color: var(--accent-purple-3);
+    }
+
+    @media (max-width: 719px){
+        h1{
+            font-size: 2.5rem;
+        }
+
+        li{
+            font-size: 1.3rem;
+        }
+
+        li #title{
+            font-size: 1.5rem;
+        }
+    }
+
+    @media (min-width: 1921px) {
+        h1{
+            margin-top: 7vh;
+        }
+
+        div{
+            margin-top: 7vh;
+        }
+    }
+</style>

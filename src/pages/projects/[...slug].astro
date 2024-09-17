@@ -1,0 +1,239 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../Layouts/BaseLayout.astro";
+import Hero from "../../components/Hero.astro";
+
+interface Props {
+    entry: CollectionEntry<'projects'>;
+}
+
+export async function getStaticPaths(){
+    const project = await getCollection('projects');
+    return project.map((entry) => ({
+        params: {
+            slug: entry.slug,
+        },
+        props: {
+            entry,
+        },
+    }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<BaseLayout title={entry.data.title} description={entry.data.description}>
+    <div class="mb-12">
+        <div id="back-link">
+            <a href="/projects/">
+                <p id="back">&lt;-Back</p>
+            </a>
+        </div>
+        <header id="header-title">
+            <Hero 
+                title={entry.data.title}
+                description=""
+                align="start"
+                >
+                <div id="details">
+                    <div id="header-info">
+                        <div>
+                            <p id="description">
+                                {entry.data.description}
+                            </p>
+                            <div id="tags" class="flex flex-row justify-center">
+                                {entry.data.tags.map((tag) => (
+                                    <span id="tag">{tag}</span>
+                                ))}
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            {entry.data.img && <img src={entry.data.img} alt={entry.data.title} || ' ' />}
+                        </div>
+                    </div>
+                </div>
+            </Hero>
+        </header>
+        <main id="wrapper"> 
+            <div class="stack gap-10" id="content">
+                <div id="markdown">
+                    <Content />
+                </div>
+            </div>
+        </main>
+    </div>
+</BaseLayout>
+
+<style>
+    #back-link{
+        position: fixed;
+        text-decoration: none;
+        color: #fff;
+        padding: 5px 10px;
+        margin: 3rem 6rem;
+        border-radius: 5px;
+        background-color: var(--color-black);
+        width: 7vw;
+        font-size: 1.7rem;
+        text-transform: uppercase;
+    }
+
+    #header-title{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #details #description{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 1rem;
+        font-size: 1.2rem;
+    }
+
+    #details #tag{
+        margin: 1rem;
+        padding: 5px 10px;
+        border-radius: 5px;
+        background-color: var(--accent-cyan-1);
+    }
+
+    #details img{
+        width: 35vw;
+        height: auto;
+        border: 15px inset var(--accent-cyan-2);
+        border-radius: 15%; 
+    }
+
+    #content, #details{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #content #markdown{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin: 1rem 15vw;
+        font-size: 1.2rem;
+    }
+
+    #content #markdown > :global(* + *){
+        margin-top: 1rem;
+    }
+
+    #content #markdown :global(h2){
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: var(--accent-purple-3);
+    }
+
+    #content #markdown :global(blockquote){
+        font-size: 1.6rem;
+        font-weight: 400;
+        line-height: 1.1;
+        padding-inline-start: 1.5rem;
+		border-inline-start: 0.25rem solid var(--accent-purple-1);
+    }
+
+    #content #markdown :global(h3){
+        font-size: 1.8rem;
+        margin-top: 3rem;
+        font-weight: 600;
+        line-height: 1.1;
+        color: var(--accent-purple-3);
+    }
+
+    #content #markdown :global(h4){
+        font-size: 1.6rem;
+        font-weight: 600;
+        line-height: 1.1;
+        margin-top: 3rem;
+        color: var(--accent-purple-3);
+    }
+
+    #content #markdown :global(li){
+        list-style: disc;
+        margin-left: 3rem;
+    }
+
+    @media (max-width: 719px){
+        #back-link{
+            display: none;
+        }
+
+        #header-title{
+            margin: 0;
+            text-align: center;
+        }
+
+        #details #description{
+            font-size: 1rem;
+        }
+
+        #details #tag{
+            margin: 0 1rem;
+            font-size: .8rem;
+            margin: 0 0.5rem;
+        }
+
+        #details img{
+            width: 90vw;
+            border: 3px inset var(--accent-cyan-2);
+            margin: 0 5vw;
+        }
+
+        #content #markdown{
+            margin: 1rem 5vw -10vh 5vw;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        #content #markdown :global(h2){
+            font-size: 1.3rem;
+        }
+
+        #content #markdown :global(blockquote){
+            font-size: 1.1rem;
+            padding-inline-start: 0;
+            border-inline-start: 0;
+        }
+
+        #content #markdown :global(h3){
+            font-size: 1.2rem;
+        }
+
+        #content #markdown :global(h4){
+            font-size: 1.1rem;
+        }
+
+        #content #markdown :global(li){
+            list-style: none;
+            margin-left: 0;
+        }
+    }
+
+    @media (min-width: 1921px){
+        #header-title{
+            margin: 0 20rem;
+        }
+        
+        #header-info{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            margin: 0 20rem;
+        }
+
+        #header-info img{
+            width: 15vw;
+            height: auto;
+            border: 15px inset var(--accent-cyan-2);
+            border-radius: 15%;
+        }
+    }
+</style>

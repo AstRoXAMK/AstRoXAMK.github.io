@@ -1,0 +1,41 @@
+---
+import MainHead from "./MainHead.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import ContactMe from "../components/ContactMe.astro";
+const {title, seoTitle, seoDescription} = Astro.props;
+---
+
+<html>
+    <MainHead title = {title} seoTitle = {seoTitle} seoDescription = {seoDescription}/>
+    <body class="bg-gradient-to-br from-indigo-900 via-slate-800 to-purple-900 text-white grid gap-0 overflow-hidden">
+        <Nav />
+        <div class="my-20">
+            <slot />
+        </div>
+        <ContactMe />
+        <Footer />
+        <style>
+            body{
+                font-family: 'Poppins', sans-serif;
+                min-height: 100vh;
+                overflow: auto !important;
+            }
+
+            :root{
+                --color-white: #fff;
+                --color-black: #333;
+                --accent-cyan-1: #06b6d4;
+                --accent-cyan-2: #0891b2;
+                --accent-cyan-3: #68ebfc;
+                --accent-purple-1: #9333ea;
+                --accent-purple-2: #7e22ce;
+                --accent-purple-3: #c49fff;
+                --accent-code: #0f0;
+                --accent-dropped: #f00;
+                --accent-working: #ff0;
+                --accent-gray: rgba(44, 44, 44, 0.85);
+            }
+        </style>
+    </body>
+</html>
