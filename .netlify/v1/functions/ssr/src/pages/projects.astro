@@ -1,0 +1,37 @@
+---
+import { getCollection } from "astro:content";
+
+import BaseLayout from "../Layouts/BaseLayout.astro";
+
+import Hero from "../components/Hero.astro";
+import Grid from "../components/Grid.astro";
+import PortfolioPreview from "../components/PortfolioPreview.astro";
+
+const projects = (await getCollection('projects')).sort(
+	(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+---
+
+<BaseLayout 
+    title = "My Projects" 
+    seoTitle=""
+    seoDescription="">
+    <div class="stack gap-20">
+        <main class="w-auto lg:w-6/12 mx-auto">
+            <Hero 
+                title="My Projects" 
+                description="Here is a collection of projects that I have worked on or am working on at the time. I have worked on a variety of projects, from web development to game development. I am always looking for new projects to work on, so if you have a project that you would like me to work on, feel free to contact me."
+                align="start"
+            />
+            <Grid variant="offset">
+                {
+                    projects.map((project) => (
+                        <li>
+                            <PortfolioPreview project={project} />
+                        </li>
+                    ))
+                }
+            </Grid>
+        </main>
+    </div>
+</BaseLayout>
